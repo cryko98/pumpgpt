@@ -81,7 +81,7 @@ export const Header: React.FC = () => {
               {copied ? <Check size={12} className="text-green-500" /> : <Copy size={12} className="opacity-50 group-hover:opacity-100" />}
             </button>
             
-            <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="p-2 text-gray-500 hover:text-black hover:bg-gray-100 rounded-full transition-colors">
+            <a href="https://x.com/pumpgptsol" target="_blank" rel="noopener noreferrer" className="p-2 text-gray-500 hover:text-black hover:bg-gray-100 rounded-full transition-colors">
               <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
               </svg>
@@ -130,7 +130,7 @@ export const Header: React.FC = () => {
               </button>
               
               <div className="grid grid-cols-2 gap-3">
-                 <a href="https://x.com" className="flex items-center justify-center py-3 bg-gray-50 rounded-2xl text-gray-600 hover:text-black font-bold text-sm">
+                 <a href="https://x.com/pumpgptsol" className="flex items-center justify-center py-3 bg-gray-50 rounded-2xl text-gray-600 hover:text-black font-bold text-sm">
                     X.com
                  </a>
                  <a href="https://pump.fun" className="flex items-center justify-center py-3 bg-pump-green text-white rounded-2xl font-bold text-sm shadow-lg shadow-green-200">
