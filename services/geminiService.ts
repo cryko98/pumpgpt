@@ -13,7 +13,7 @@ const generateMockResponse = (prompt: string): string => {
   return responses[Math.floor(Math.random() * responses.length)];
 };
 
-const PUMP_GPT_LOGO_URL = "https://pbs.twimg.com/media/G71caYrXsAAAonQ?format=jpg&name=medium";
+const PUMP_GPT_LOGO_URL = "https://pbs.twimg.com/media/G71plYAXAAAOyFl?format=jpg&name=small";
 
 // Helper to fetch the logo as base64 to use as reference
 async function fetchPumpGptReferenceImage(): Promise<string | null> {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Copy, Check, Menu, X as XIcon, Wifi, WifiOff } from 'lucide-react';
+import { Copy, Check, Menu, X as XIcon, Wifi, WifiOff, TrendingUp } from 'lucide-react';
 import { getApiKey } from '../services/geminiService';
 
 export const Header: React.FC = () => {
@@ -7,6 +7,7 @@ export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hasApiKey, setHasApiKey] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [solPrice, setSolPrice] = useState(145.24);
   const contractAddress = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 
   useEffect(() => {
@@ -18,7 +19,19 @@ export const Header: React.FC = () => {
       setScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // Simulate SOL Price Ticker
+    const priceInterval = setInterval(() => {
+        setSolPrice(prev => {
+            const change = (Math.random() - 0.5) * 0.15;
+            return Number((prev + change).toFixed(2));
+        });
+    }, 2500);
+
+    return () => {
+        window.removeEventListener('scroll', handleScroll);
+        clearInterval(priceInterval);
+    };
   }, []);
 
   const handleCopy = () => {
@@ -36,7 +49,7 @@ export const Header: React.FC = () => {
           <div className="flex-shrink-0 flex items-center gap-3 group cursor-pointer pl-1">
              <div className="relative">
                 <img 
-                  src="https://pbs.twimg.com/media/G71caYrXsAAAonQ?format=jpg&name=medium" 
+                  src="https://pbs.twimg.com/media/G71plYAXAAAOyFl?format=jpg&name=small" 
                   alt="Pump GPT Logo" 
                   className="relative w-10 h-10 rounded-full border border-white shadow-sm object-cover"
                 />
@@ -46,6 +59,12 @@ export const Header: React.FC = () => {
 
           {/* Desktop Nav & Actions */}
           <div className="hidden md:flex items-center space-x-3">
+             {/* Dynamic SOL Price */}
+             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gray-50 border border-gray-100 text-xs font-mono font-bold text-gray-600 mr-2">
+                <TrendingUp size={12} className="text-green-500" />
+                <span>SOL: ${solPrice}</span>
+             </div>
+
              {/* Status Indicator */}
             <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider border ${hasApiKey ? 'bg-green-100/50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`}>
                 {hasApiKey ? <Wifi size={12} /> : <WifiOff size={12} />}
@@ -92,9 +111,14 @@ export const Header: React.FC = () => {
       {mobileMenuOpen && (
         <div className="fixed top-24 left-4 right-4 z-40 md:hidden animate-in slide-in-from-top-4 fade-in duration-200">
           <div className="bg-white/95 backdrop-blur-xl rounded-3xl border border-white/40 p-4 shadow-2xl space-y-3">
-             <div className={`flex items-center justify-center gap-2 p-3 rounded-xl text-xs font-bold uppercase ${hasApiKey ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
-                  {hasApiKey ? <Wifi size={14} /> : <WifiOff size={14} />}
-                  {hasApiKey ? 'System Online' : 'Demo Mode'}
+             <div className="flex justify-between items-center bg-gray-50 p-3 rounded-xl">
+                 <div className={`flex items-center gap-2 text-xs font-bold uppercase ${hasApiKey ? 'text-green-700' : 'text-red-700'}`}>
+                    {hasApiKey ? <Wifi size={14} /> : <WifiOff size={14} />}
+                    {hasApiKey ? 'Online' : 'Demo Mode'}
+                 </div>
+                 <div className="text-xs font-mono font-bold text-gray-600">
+                    SOL: ${solPrice}
+                 </div>
              </div>
              
              <button 

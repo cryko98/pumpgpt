@@ -126,7 +126,7 @@ export const ChatInterface: React.FC = () => {
             <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full border border-green-200 overflow-hidden shadow-sm flex-shrink-0">
                    <img 
-                      src="https://pbs.twimg.com/media/G71caYrXsAAAonQ?format=jpg&name=medium" 
+                      src="https://pbs.twimg.com/media/G71plYAXAAAOyFl?format=jpg&name=small" 
                       alt="Pump GPT Logo"
                       className="w-full h-full object-cover"
                    />
