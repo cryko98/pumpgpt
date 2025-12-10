@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowRight, Zap, Image as ImageIcon, Terminal, Globe, Activity } from 'lucide-react';
+import React from 'react';
+import { Image as ImageIcon, Terminal, Zap } from 'lucide-react';
 
 interface HeroProps {
   onOpenTerminal: () => void;
@@ -7,17 +7,6 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenMemeGen }) => {
-  const [totalGenerations, setTotalGenerations] = useState(84932);
-  const [activeAgents, setActiveAgents] = useState(1420);
-
-  useEffect(() => {
-    // Increment stats to simulate activity
-    const interval = setInterval(() => {
-        setTotalGenerations(prev => prev + Math.floor(Math.random() * 3));
-        setActiveAgents(prev => prev + Math.floor(Math.random() * 5) - 2);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <div className="w-full relative z-10 py-6 md:py-10">
@@ -46,19 +35,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenMemeGen }) => 
                 <p className="text-xl md:text-2xl font-bold text-gray-900/90 max-w-lg leading-relaxed tracking-tight">
                     The first AI agent that codes <span className="underline decoration-white decoration-4 underline-offset-4">flawless apps</span> and generates elite memes.
                 </p>
-
-                {/* Dynamic Stats Row */}
-                <div className="flex items-center gap-6 text-pump-black/80 font-mono text-xs font-bold">
-                    <div className="flex items-center gap-2">
-                        <Globe size={14} />
-                        <span>{totalGenerations.toLocaleString()} GENERATIONS</span>
-                    </div>
-                    <div className="w-px h-3 bg-pump-black/20"></div>
-                    <div className="flex items-center gap-2">
-                        <Activity size={14} />
-                        <span>{activeAgents.toLocaleString()} ACTIVE AGENTS</span>
-                    </div>
-                </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-4">
                     <button 

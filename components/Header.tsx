@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Copy, Check, Menu, X as XIcon, Wifi, WifiOff, TrendingUp } from 'lucide-react';
+import { Copy, Check, Menu, X as XIcon, Wifi, WifiOff } from 'lucide-react';
 import { getApiKey } from '../services/geminiService';
 
 export const Header: React.FC = () => {
@@ -7,7 +7,6 @@ export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hasApiKey, setHasApiKey] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [solPrice, setSolPrice] = useState(145.24);
   const contractAddress = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 
   useEffect(() => {
@@ -20,17 +19,8 @@ export const Header: React.FC = () => {
     };
     window.addEventListener('scroll', handleScroll);
 
-    // Simulate SOL Price Ticker
-    const priceInterval = setInterval(() => {
-        setSolPrice(prev => {
-            const change = (Math.random() - 0.5) * 0.15;
-            return Number((prev + change).toFixed(2));
-        });
-    }, 2500);
-
     return () => {
         window.removeEventListener('scroll', handleScroll);
-        clearInterval(priceInterval);
     };
   }, []);
 
@@ -59,12 +49,7 @@ export const Header: React.FC = () => {
 
           {/* Desktop Nav & Actions */}
           <div className="hidden md:flex items-center space-x-3">
-             {/* Dynamic SOL Price */}
-             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gray-50 border border-gray-100 text-xs font-mono font-bold text-gray-600 mr-2">
-                <TrendingUp size={12} className="text-green-500" />
-                <span>SOL: ${solPrice}</span>
-             </div>
-
+             
              {/* Status Indicator */}
             <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider border ${hasApiKey ? 'bg-green-100/50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`}>
                 {hasApiKey ? <Wifi size={12} /> : <WifiOff size={12} />}
@@ -115,9 +100,6 @@ export const Header: React.FC = () => {
                  <div className={`flex items-center gap-2 text-xs font-bold uppercase ${hasApiKey ? 'text-green-700' : 'text-red-700'}`}>
                     {hasApiKey ? <Wifi size={14} /> : <WifiOff size={14} />}
                     {hasApiKey ? 'Online' : 'Demo Mode'}
-                 </div>
-                 <div className="text-xs font-mono font-bold text-gray-600">
-                    SOL: ${solPrice}
                  </div>
              </div>
              
