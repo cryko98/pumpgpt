@@ -7,7 +7,7 @@ export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hasApiKey, setHasApiKey] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const contractAddress = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+  const contractAddress = "Gwk6SPVsKZaaN28gJHoKDbm3FUjR4tu8zgw4aASTpump";
 
   useEffect(() => {
     // Check for API key on mount to set status indicator
